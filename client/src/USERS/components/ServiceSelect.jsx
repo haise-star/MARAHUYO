@@ -1,21 +1,16 @@
-// src/USERS/components/ServiceSelect.jsx
 import React from "react";
 
 export default function ServiceSelect({ services, selection, setSelection }) {
   const toggleServiceSelect = (service) => {
     if (selection.serviceId === service.id) {
-      // unselect
       setSelection({ ...selection, serviceId: null, addons: [] });
     } else {
-      // select new service, reset addons
       setSelection({ ...selection, serviceId: service.id, addons: [] });
     }
   };
 
   const toggleAddon = (e, addonId) => {
-    // stop the card click when interacting with addon checkbox
     e.stopPropagation();
-
     const cur = selection.addons || [];
     if (cur.includes(addonId)) {
       setSelection({ ...selection, addons: cur.filter((a) => a !== addonId) });
@@ -65,7 +60,7 @@ export default function ServiceSelect({ services, selection, setSelection }) {
                       <label
                         key={a.id}
                         className="flex items-center justify-between bg-[#f8faf8] p-2 rounded"
-                        onClick={(e) => e.stopPropagation()} // ensure label click doesn't activate card toggle
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <div>
                           <div className="text-sm font-medium text-[#19183b]">{a.title}</div>
@@ -85,10 +80,8 @@ export default function ServiceSelect({ services, selection, setSelection }) {
                 </div>
               )}
 
-              {/* Selected badge */}
               <div className="mt-4">
                 <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${selected ? "bg-[#19183b] text-white" : "bg-[#e7f2ef] text-[#19183b]"}`}>
-                  
                 </div>
               </div>
             </div>
