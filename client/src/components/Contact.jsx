@@ -16,21 +16,21 @@ export default function Contact() {
           <input
             type="text"
             placeholder="Your Name"
-            className="p-4 border rounded-lg w-full focus:ring-2 focus:ring-[#19183b] outline-none"
+            className="p-4 border border-gray-300 rounded-lg w-full text-[#19183b] placeholder-gray-500 bg-white focus:ring-2 focus:ring-[#ffb347] focus:border-[#ffb347] outline-none"
           />
           <input
             type="email"
             placeholder="Your Email"
-            className="p-4 border rounded-lg w-full focus:ring-2 focus:ring-[#19183b] outline-none"
+            className="p-4 border border-gray-300 rounded-lg w-full text-[#19183b] placeholder-gray-500 bg-white focus:ring-2 focus:ring-[#ffb347] focus:border-[#ffb347] outline-none"
           />
           <textarea
             placeholder="Your Message"
             rows="5"
-            className="p-4 border rounded-lg w-full focus:ring-2 focus:ring-[#19183b] outline-none"
+            className="p-4 border border-gray-300 rounded-lg w-full text-[#19183b] placeholder-gray-500 bg-white focus:ring-2 focus:ring-[#ffb347] focus:border-[#ffb347] outline-none"
           ></textarea>
           <button
             type="submit"
-            className="px-6 py-3 rounded-full bg-gradient-to-r from-[#19183b] to-[#ffb347] text-white font-semibold shadow hover:scale-105 transition"
+            className="px-6 py-3 rounded-full bg-gradient-to-r from-[#19183b] to-[#ffb347] text-white font-semibold shadow hover:scale-105 transition-transform"
           >
             Send Message
           </button>

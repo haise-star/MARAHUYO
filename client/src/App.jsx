@@ -1,4 +1,8 @@
 // src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
+// Landing Components
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -6,41 +10,15 @@ import Services from "./components/Services";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
 import AuthModal from "./components/AuthModal";
-import OTPModal from "./components/OTPModal"; // ✅ import OTP modal
-import { useState, useEffect } from "react";
+import OTPModal from "./components/OTPModal";
 
-function App() {
+// Users & Admin Areas
+import UsersApp from "./USERS/UsersApp";   
+import AdminApp from "./ADMIN/AdminApp";   
+
+function LandingPage() {
   const [authType, setAuthType] = useState(null);
-  const [showOtp, setShowOtp] = useState(false); // ✅ OTP state
-
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
-    const scrollToHome = () => {
-      const el = document.getElementById("home");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    };
-
-    window.requestAnimationFrame(() => {
-      scrollToHome();
-      setTimeout(scrollToHome, 60);
-    });
-
-    window.addEventListener("load", scrollToHome);
-
-    return () => {
-      window.removeEventListener("load", scrollToHome);
-      if ("scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "auto";
-      }
-    };
-  }, []);
+  const [showOtp, setShowOtp] = useState(false);
 
   return (
     <div className="font-sans">
@@ -57,19 +35,17 @@ function App() {
       <FAQ />
       <Contact />
 
-      {/* ✅ Auth Modal */}
       {authType && (
         <AuthModal
           type={authType}
           onClose={() => setAuthType(null)}
           onRegisterSuccess={() => {
             setAuthType(null);
-            setShowOtp(true); // ✅ Open OTP after register
+            setShowOtp(true);
           }}
         />
       )}
 
-      {/* ✅ OTP Modal */}
       {showOtp && (
         <OTPModal
           onClose={() => setShowOtp(false)}
@@ -83,4 +59,14 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/users/*" element={<UsersApp />} />
+        <Route path="/admin/*" element={<AdminApp />} />
+      </Routes>
+    </Router>
+  );
+}
